@@ -180,9 +180,9 @@ def navigation(path):
 def delivery():
     input_string = input("insert string here: ")
     input_list = input_string.split(',')
-    fire1 = FIRE_POSITION_DICT[input_list[2]]
-    fire2 = FIRE_POSITION_DICT[input_list[5]]
-    fire3 = FIRE_POSITION_DICT[input_list[8]]
+    firetype1 = FIRE_POSITION_DICT[input_list[2]]
+    firetype2 = FIRE_POSITION_DICT[input_list[5]]
+    firetype3 = FIRE_POSITION_DICT[input_list[8]]
 
     fire_pos1 = (input_list[0],input_list[1])
     fire_pos2 = (input_list[3],input_list[4])
