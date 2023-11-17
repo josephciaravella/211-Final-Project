@@ -1,4 +1,4 @@
-import normalization
+import shortest_path
 import pathfinding
 import brickpi3
 from utils.brick import TouchSensor, wait_ready_sensors, BP , Motor, EV3ColorSensor
@@ -14,8 +14,10 @@ right_wheel = Motor("B")
 color_sensor_left = EV3ColorSensor(3)
 color_sensor_right = EV3ColorSensor(2)          
 FIRE_POSITION_DICT = {'A':1, 'B':2, 'C':3, 'D':4, 'E':5, 'F':6}
+GRID = [[0 for _ in range(GRID_SIZE)] for _ in range(GRID_SIZE)]
 orientation = "up"
 curr_pos = [0,0]
+START = (0,0)
 
 
 
@@ -175,14 +177,33 @@ def navigation(path):
 
 
 
-def delivery(input_string):
-    input = input_string.split(',')
-    fire1 = FIRE_POSITION_DICT[input[2]]
-    fire2 = FIRE_POSITION_DICT[input[5]]
-    fire3 = FIRE_POSITION_DICT[input[8]]
+def delivery():
+    input_string = input("insert string here: ")
+    input_list = input_string.split(',')
+    fire1 = FIRE_POSITION_DICT[input_list[2]]
+    fire2 = FIRE_POSITION_DICT[input_list[5]]
+    fire3 = FIRE_POSITION_DICT[input_list[8]]
 
-    fire_pos1 = (input[0],input[1])
-    fire_pos2 = (input[3],input[4])
-    fire_pos3 = (input[6],input[7])
+    fire_pos1 = (input_list[0],input_list[1])
+    fire_pos2 = (input_list[3],input_list[4])
+    fire_pos3 = (input_list[6],input_list[7])
 
-    #call shortest_path(grid, (0,0), fire_pos1, fire_pos2, fire_pos3)
+    path1,path2,path3,path4 = shortest_path(GRID, START, fire_pos1, fire_pos2, fire_pos3)
+
+    navigation(path1)
+    #drop cube
+    pathfinding.backward_mvmt()
+
+    navigation(path2)
+    #drop cube
+    pathfinding.backward_mvmt()
+
+    navigation(path3)
+    #drop cube
+    pathfinding.backward_mvmt()
+
+    navigation(path4)
+
+if __name__ == "__main__":
+    delivery()
+
