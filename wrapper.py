@@ -178,31 +178,55 @@ def navigation(path):
 
 
 def delivery():
+    """
+    Facilitates the delivery process, prompting the user to input a string, parsing it into relevant information,
+    computing the shortest paths to three fire positions, and navigating a delivery robot to each fire position
+    while executing delivery actions.
+
+    Returns:
+    None
+
+    Notes:
+    - The function relies on external dictionaries (FIRE_POSITION_DICT) and functions (shortest_path, navigation, pathfinding.backward_mvmt).
+    - The user is prompted to input a string containing fire positions and types separated by commas.
+    - The function extracts relevant information from the input string and computes the shortest paths to three fire positions.
+    - The robot navigates to each fire position, performs a delivery action, and moves backward using pathfinding.
+    """
     input_string = input("insert string here: ")
     input_list = input_string.split(',')
+
+    # Extract fire types based on the input string
     firetype1 = FIRE_POSITION_DICT[input_list[2]]
     firetype2 = FIRE_POSITION_DICT[input_list[5]]
     firetype3 = FIRE_POSITION_DICT[input_list[8]]
 
-    fire_pos1 = (input_list[0],input_list[1])
-    fire_pos2 = (input_list[3],input_list[4])
-    fire_pos3 = (input_list[6],input_list[7])
+    # Extract fire positions based on the input string
+    fire_pos1 = (input_list[0], input_list[1])
+    fire_pos2 = (input_list[3], input_list[4])
+    fire_pos3 = (input_list[6], input_list[7])
 
-    path1,path2,path3,path4 = shortest_path(GRID, START, fire_pos1, fire_pos2, fire_pos3)
+    # Compute shortest paths to fire positions
+    path1, path2, path3, path4 = shortest_path(GRID, START, fire_pos1, fire_pos2, fire_pos3)
 
+    # Navigate to the first fire position and perform delivery action
     navigation(path1)
-    #drop cube
+    # Drop cube
     pathfinding.backward_mvmt()
 
+    # Navigate to the second fire position and perform delivery action
     navigation(path2)
-    #drop cube
+    # Drop cube
     pathfinding.backward_mvmt()
 
+    # Navigate to the third fire position and perform delivery action
     navigation(path3)
-    #drop cube
+    # Drop cube
     pathfinding.backward_mvmt()
 
+    # Navigate to the fourth position (if applicable)
     navigation(path4)
+    # Drop cube
+    pathfinding.backward_mvmt()
 
 if __name__ == "__main__":
     delivery()
