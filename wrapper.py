@@ -211,21 +211,25 @@ def delivery():
     # Navigate to the first fire position and perform delivery action
     navigation(path1)
     # Drop cube
+    # Move backwards
     pathfinding.backward_mvmt()
 
     # Navigate to the second fire position and perform delivery action
     navigation(path2)
     # Drop cube
+    # Move backwards
     pathfinding.backward_mvmt()
 
     # Navigate to the third fire position and perform delivery action
     navigation(path3)
     # Drop cube
+    # Move backwards
     pathfinding.backward_mvmt()
 
     # Navigate to the fourth position (if applicable)
     navigation(path4)
     # Drop cube
+    # Move backwards
     pathfinding.backward_mvmt()
 
 if __name__ == "__main__":
