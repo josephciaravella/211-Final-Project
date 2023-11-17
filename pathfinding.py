@@ -101,7 +101,7 @@ def backward_mvmt():
 
     
 
-def turn_left(target):
+def turn_left():
     left_wheel.set_limits(POWER_LIMIT,SPEED_LIMIT)
     right_wheel.set_limits(POWER_LIMIT,SPEED_LIMIT)
     while True:
@@ -122,7 +122,7 @@ def turn_left(target):
         
         print(color_right, color_left)
         
-        if (color_right == target):
+        if (color_right == "Red" or color_right == "Blue"):
             print("HIT BLUE")
             right_wheel.set_position_relative(-10)
             break
@@ -131,7 +131,7 @@ def turn_left(target):
 
 
 
-def turn_right(target):
+def turn_right():
     left_wheel.set_limits(POWER_LIMIT,SPEED_LIMIT)
     right_wheel.set_limits(POWER_LIMIT,SPEED_LIMIT)
     while True:
@@ -152,7 +152,7 @@ def turn_right(target):
         
         print(color_right, color_left)
         
-        if (color_left == target):
+        if (color_left == "Red" or color_left == "Blue"):
             print("HIT BLUE")
             right_wheel.set_position_relative(10)
             left_wheel.set_position_relative(-30)
